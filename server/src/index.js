@@ -4,6 +4,7 @@ import './config/config.js';
 import './models/index.js';
 import { UserRouter } from './routers/UserRouter.js';
 import { UserAuthRouter } from './routers/UserAuthRouter.js';
+import { ContactRouter } from './routers/ContactRouter.js';
 
 const app  = express();
 const PORT =  process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use('/api/user', UserRouter);
 app.use('/api/user/auth', UserAuthRouter);
+app.use('/api/contact', ContactRouter);
 
 app.listen( PORT , () => {
     console.log(`server in port : http://localhost:${PORT}`);
