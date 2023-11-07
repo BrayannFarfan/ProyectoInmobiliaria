@@ -3,10 +3,10 @@ import { sequelize } from '../config/config.js';
 
 
 export const User =  sequelize.define(' user', {
-    FullName:{
+    fullName:{
         type: DataTypes.STRING
     },
-    UseName:{
+    useName:{
         type: DataTypes.STRING
     },
     password:{
