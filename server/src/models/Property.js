@@ -13,9 +13,6 @@ export const Property =  sequelize.define('property', {
     },
     price:{
         type: DataTypes.FLOAT
-    },
-    rol:{
-        type: DataTypes.STRING
     }
 },{
     timestamps: false
