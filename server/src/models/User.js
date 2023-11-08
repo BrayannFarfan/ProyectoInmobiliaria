@@ -17,6 +17,9 @@ export const User =  sequelize.define(' user', {
     },
     phone:{
         type: DataTypes.INTEGER
+    },
+    rol:{
+        type: DataTypes.STRING
     }
 },{
     timestamps: false
