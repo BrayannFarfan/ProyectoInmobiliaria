@@ -1,0 +1,40 @@
+.groupButtons{
+    display: flex;
+    flex-direction: row;
+}
+.groupButtons button {
+    font-family: Poppins;
+    font-weight: bold;
+    color:white;
+    background-color: #1a365d;
+
+}
+.loginButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.25rem;
+    height: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 0.5rem;
+}
+
+.signinButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin:0.25rem;  
+    height: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 0.5rem;
+}
+@media screen and (max-width:770px){
+    .signinButton {
+        display:none;
+    }
+    .loginButton { display:none}
+}
