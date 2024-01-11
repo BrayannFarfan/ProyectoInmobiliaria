@@ -16,7 +16,7 @@ export default function About() {
           <section className="flex flex-col items-center justify-center w-1/3">
             <img
               src={hom}
-              className="object-cover object-center lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover object-center lg:w-[6vw] lg:h-20 w-[10vw] md:h-16 h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
               alt="man"
             />
             <h2 className="font-pop lg:mt-4 mb-4 lg:text-xl text-sm text-center">
@@ -31,7 +31,7 @@ export default function About() {
           <section className="flex flex-col items-center justify-center w-1/3">
             <img
               src={gol}
-              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 md:h-16 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
               alt="man"
             />
             <h2 className="font-pop lg:mt-4 mb-4 lg:text-xl text-sm text-center">
@@ -47,7 +47,7 @@ export default function About() {
             <img
               src={pai}
               alt="man"
-              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 md:h-16 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
             />
             <h2 className="font-pop lg:mt-4 mb-4 lg:text-xl text-sm text-center">
               Dependable
@@ -65,7 +65,7 @@ export default function About() {
             <img
               src={prof}
               alt="man"
-              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 md:h-16 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
             />
             <h2 className="font-pop lg:mt-4 mb-4 text-center lg:text-xl text-sm">
               Top rated agents
@@ -79,7 +79,7 @@ export default function About() {
             <img
               src={escudo}
               alt="man"
-              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 md:h-16 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
             />
             <h2 className="font-pop lg:mt-4 mb-4 text-center lg:text-xl text-sm">
               Easy and safe
@@ -94,7 +94,7 @@ export default function About() {
             <img
               src={busq}
               alt="man"
-              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
+              className="object-cover lg:w-[6vw] lg:h-20 w-[10vw] h-8 md:h-16 bg-gray-200 p-1 lg:p-5 m-2 rounded-full"
             />
             <h2 className="font-pop lg:mt-4 mb-4 text-center lg:text-xl text-sm">
               Transparency

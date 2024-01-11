@@ -1,19 +1,19 @@
 import teamMembers from "../../info/team";
 import logo from "../../../images/grouplogo.png";
-//import points from "../../../images/points.png";
+
 import { useState } from "react";
 export default function OurTeam() {
   const [members, setMembers] = useState(teamMembers);
   return (
     <>
-      <h1 className="lg:h-10 lg:p-7 bg-blue-950 flex justify-center text-white font-pop font-bold lg:text-3xl">
+      <h1 className="lg:h-10 lg:p-7 bg-blue-950 flex justify-center text-white font-pop font-bold lg:text-3xl text-xl h-9 md:h-12 ">
         Our Team
       </h1>
-      <div className="h-20 lg:h-auto bg-blue-950 lg:flex  text-white font-pop font-bold lg:flex-row justify-center">
+      <div className="h-40 lg:h-auto bg-blue-950 lg:flex  text-white font-pop font-bold lg:flex-row text-sm justify-center tracking-wide leading-loose">
         {members?.map((m) => {
           return (
             <section
-              className="flex justify-center flex-col"
+              className="flex justify-center lg:flex-col"
               key={Math.random()}
             >
               <img
@@ -21,7 +21,7 @@ export default function OurTeam() {
                 src={m.photo}
                 alt="per"
               />
-              <section className="flex justify-center flex-col lg:ml-10 lg:mb-10 lg:mt-4">
+              <section className="flex justify-center lg:flex-col lg:ml-10 lg:mb-10 lg:mt-4">
                 <h1 className="text-center">{m.name}</h1>
                 <h2 className="text-center">{m.job}</h2>
               </section>
@@ -30,10 +30,10 @@ export default function OurTeam() {
         })}
       </div>
       <div>
-        <h1 className="lg:text-4xl text-xl text-blue-950 font-pop font-bold lg:p-5 lg:flex justify-center">
+        <h1 className="lg:text-4xl text-xl text-blue-950 font-pop font-bold lg:p-5 flex justify-center mt-5">
           Our Trayectory
         </h1>
-        <p className="p-10 lg:text-md text-sm text-zinc-400 font-bold font-pop leading-7 text-start lg:p-20">
+        <p className="p-10 lg:text-md text-sm text-zinc-400 font-bold font-pop leading-7 text-start lg:p-15">
           In the ever-evolving world of real estate, Bonpland has emerged as a
           reliable beacon for those looking to buy and sell properties
           effectively and safely.
@@ -54,7 +54,7 @@ export default function OurTeam() {
           </span>
         </p>
         <div className="flex justify-center">
-          <img src={logo} alt="" className="" />
+          <img src={logo} alt="logo" className="h-24 md:h-48 lg:h-96" />
         </div>
       </div>
     </>

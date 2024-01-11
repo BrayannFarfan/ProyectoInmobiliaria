@@ -19,23 +19,23 @@ export default function Header() {
   };
   return (
     <>
-      <div className="flex flex-col justify-center p-2 mx-2 lg:px-4 lg:py-0  lg:flex lg:flex-row lg:justify-between ">
-        <div className="flex flex-row justify-between px-2 align-center items-center">
+      <div className="flex flex-col justify-center p-2 lg:mx-2 md:mx-0 mx-0 lg:px-4 md:w-[100vw] lg:py-0  lg:flex lg:flex-row lg:justify-between ">
+        <div className="flex flex-row lg:justify-between justify-center items-center ">
           <img
             onClick={handleRedirect}
-            className="w-[23vw] lg:w-[13vw] lg:p-5"
+            className="w-[23vw] md:w-[20vw] lg:w-[13vw] md:h-[80px] lg:h-[110px] lg:p-5 lg:mr-5 md:mx-auto mx-auto ml-30"
             src={log}
             alt="logo"
           />
           <img
             src={man}
-            className="lg:hidden md:hidden w-[8vw] h-8 mt-2"
+            className="lg:hidden lg:w-[8vw] md:h-8 h-7 mr-3 md:mr-0 mt-4 md:mt-7"
             alt="man"
           />
         </div>
-        <section className="flex flex-row justify-evenly gap-1 mt-6 w-[90vw] lg:w-[76vw] px-3 items-center lg:bg-white bg-blue-950 lg:flex-row">
+        <section className="flex flex-row justify-between md:mt-6 mt-4 items-center lg:justify-evenly lg:w-[76vw] lg:bg-white bg-blue-950 lg:flex-row">
           <p
-            className="text-white lg:text-blue-950 font-pop "
+            className="text-white lg:text-blue-950 font-pop ml-10 md:ml-40"
             onClick={handleRedirect}
           >
             Home
