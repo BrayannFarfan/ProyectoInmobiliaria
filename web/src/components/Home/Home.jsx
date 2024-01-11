@@ -34,7 +34,7 @@ const Home = () => {
         <Carrousel />
       </div>
       <div className="flex justify-center text-xl lg:hidden bg-blue-950 mt-6 w-full">
-        <h1 className="font-pop lg:hidden flex justify-start text-white">
+        <h1 className="font-pop lg:hidden flex justify-start text-white ">
           Check our properties!
         </h1>
       </div>
