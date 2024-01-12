@@ -17,6 +17,9 @@ export default function Header() {
   const handleContact = () => {
     navigate("/contactus");
   };
+  const handleAdmin = () => {
+    navigate("/admin");
+  };
   return (
     <>
       <div className="flex flex-col justify-center p-2 lg:mx-2 md:mx-0 mx-0 lg:px-4 md:w-[100vw] lg:py-0  lg:flex lg:flex-row lg:justify-between ">
@@ -57,6 +60,12 @@ export default function Header() {
             onClick={handleContact}
           >
             Contact
+          </p>
+          <p
+            className="text-white lg:text-pink-500 font-pop ml-4 lg:ml-0"
+            onClick={handleAdmin}
+          >
+            AdminProfile
           </p>
           <div className="groupButtons">
             <button className="loginButton">Log in</button>

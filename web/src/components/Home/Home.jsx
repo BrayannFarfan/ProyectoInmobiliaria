@@ -9,7 +9,7 @@ import ContactUs from "../ContactUs/ContactUs";
 const Home = () => {
   return (
     <>
-      <div className="flex flex-row items-center justify-center lg:w-full lg:gap-x-40 ">
+      <div className="flex flex-row items-center justify-center lg:w-full lg:gap-x-40 bg-[url('./images/decostars.png')] lg:bg-no-repeat lg:bg-[length:700px_600px] bg-[bottom_right_10rem]">
         <Outlet />
         <section className="flex flex-row lg:flex-col  lg:items-baseline ">
           <h1 className="font-pop text-sm lg:text-5xl font-semibold  text-blue-950 lg:mt-14 ">

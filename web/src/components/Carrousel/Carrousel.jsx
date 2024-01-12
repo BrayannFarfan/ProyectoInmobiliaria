@@ -18,7 +18,7 @@ export default function Carrousel() {
     else setCurrent(current + 1);
   };
   return (
-    <div className="overflow-hidden relative">
+    <div className="overflow-hidden relative lg:p-6">
       <div
         className={`flex transition ease-out duration-400 `}
         style={{ transform: `translateX(-${current * 100}%)` }}
