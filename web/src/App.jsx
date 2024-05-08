@@ -10,22 +10,29 @@ import WrapperUser from "./components/WrapperUser/WrapperUser";
 import Profile from "./components/User/Profile";
 import BuyerProfile from "./components/User/BuyerProfile";
 import SellerProfile from "./components/User/SellerProfile";
+import SignUp from "./components/signup/SignUp";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Trayectory from "./components/Trajectory/Trayectory";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Wrapper />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="trajectory" element={<Trayectory />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="ourteam" element={<OurTeam />} />
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
         </Route>
         <Route exact path="/admin" element={<WrapperUser />}>
-          <Route index element={<Profile />}></Route>
-          <Route path="buyer" element={<BuyerProfile />}></Route>
-          <Route path="seller" element={<SellerProfile />}></Route>
+          <Route index element={<Profile />} />
+          <Route path="buyer" element={<BuyerProfile />} />
+          <Route path="seller" element={<SellerProfile />} />
           {/* <Route path="loader" element={<LoaderBuyer />}></Route> */}
         </Route>
       </Routes>
