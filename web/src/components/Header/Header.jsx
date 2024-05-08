@@ -1,9 +1,19 @@
 import log from "../../../images/Logo.png";
 import man from "../../../images/man.png";
-
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
+
 export default function Header() {
+  const [logged, setLogged] = useState(false);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const usuario = localStorage.getItem("user");
+    setUser(JSON.parse(usuario));
+    const tok = localStorage.getItem("token");
+    tok ? setLogged(true) : setLogged(false);
+  }, []);
   return (
     <>
       <div className="flex flex-col justify-center p-2 lg:mx-2 md:mx-0 mx-0 lg:px-4 md:w-[100vw] lg:py-0  lg:flex lg:flex-row lg:justify-between ">
@@ -44,25 +54,29 @@ export default function Header() {
               Contact
             </p>
           </Link>
-
-          <Link to="">
-            <p className="text-white lg:text-pink-500 font-pop ml-4 lg:ml-0">
-              AdminProfile
-            </p>
-          </Link>
-
-          <div className="groupButtons">
-            <Link to="/login">
-              <button type="button" className="loginButton">
-                Log in
-              </button>
+          {logged ? (
+            <Link to={user.role_id === "A" ? "/seller" : "/buyer"}>
+              <div className="flex flex-row items-center font-pop justify-center border border-blue-950 rounded-xl shadow-md">
+                <section className="flex flex-col lg:items-center lg:mx-1 lg:my-2 text-gray-400 text-sm">
+                  <img src={man} className="h-[20px] w-auto m-1" alt="man" />
+                  <p className="mx-6">{user.name}</p>
+                </section>
+              </div>
             </Link>
-            <Link to="signup">
-              <button type="button" className="signinButton">
-                Sign up
-              </button>
-            </Link>
-          </div>
+          ) : (
+            <>
+              <Link to="/login">
+                <button type="button" className="loginButton">
+                  Log in
+                </button>
+              </Link>
+              <Link to="signup">
+                <button type="button" className="signinButton">
+                  Sign up
+                </button>
+              </Link>
+            </>
+          )}
         </section>
       </div>
     </>

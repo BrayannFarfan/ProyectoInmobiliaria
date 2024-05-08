@@ -4,24 +4,39 @@ import propiedades from "../../info/info";
 import delet from "../../../images/Trash.png";
 import edit from "../../../images/Edit.png";
 import UploadPropForm from "./UploadPropForm";
+import { useNavigate } from "react-router-dom";
+import "./profileelements.css";
 
-const UserSeller = () => {
+export default function UserSeller() {
   const [loading, setLoading] = useState(true);
   const [fotos, setFotos] = useState(propiedades);
+  const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-  console.log(fotos);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       {loading ? (
         <LoaderSeller />
       ) : (
         <>
-          <h1 className="font-pop text-lg lg:m-10">Your properties</h1>
+          <section className="flex flex-row justify-between items-center font-pop px-14 py-10">
+            <h1 className="text-lg">Your properties</h1>
+            <button
+              className="logoutButton bg-blue-950 rounded-md"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </section>
           <div>
             <section className="flex flex-row lg:m-6">
               {fotos.map((f) => {
@@ -51,6 +66,4 @@ const UserSeller = () => {
       )}
     </>
   );
-};
-
-export default UserSeller;
+}

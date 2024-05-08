@@ -5,6 +5,7 @@ import Card from "../Card/Card";
 import About from "../About/About";
 import OurTeam from "../OurTeam/OurTeam";
 import ContactUs from "../ContactUs/ContactUs";
+import Trayectory from "../Trajectory/Trayectory";
 
 const Home = () => {
   return (
@@ -43,6 +44,7 @@ const Home = () => {
       </div>
       <About />
       <OurTeam />
+      <Trayectory />
       <ContactUs />
     </>
   );
