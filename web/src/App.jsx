@@ -6,8 +6,8 @@ import About from "./components/About/About";
 import ContactUs from "./components/ContactUs/ContactUs";
 import OurTeam from "./components/OurTeam/OurTeam";
 import Login from "./components/Login/Login";
-import WrapperUser from "./components/WrapperUser/WrapperUser";
-import Profile from "./components/User/Profile";
+// import WrapperUser from "./components/WrapperUser/WrapperUser";
+// import Profile from "./components/User/Profile";
 import BuyerProfile from "./components/User/BuyerProfile";
 import SellerProfile from "./components/User/SellerProfile";
 import SignUp from "./components/signup/SignUp";
@@ -28,12 +28,8 @@ function App() {
           <Route path="ourteam" element={<OurTeam />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-        </Route>
-        <Route exact path="/admin" element={<WrapperUser />}>
-          <Route index element={<Profile />} />
           <Route path="buyer" element={<BuyerProfile />} />
           <Route path="seller" element={<SellerProfile />} />
-          {/* <Route path="loader" element={<LoaderBuyer />}></Route> */}
         </Route>
       </Routes>
     </div>

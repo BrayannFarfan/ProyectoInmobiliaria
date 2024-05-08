@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  const navigate = useNavigate();
   const [user, setUser] = useState();
 
   const handleSubmit = async (e) => {
@@ -14,6 +16,7 @@ export default function SignUp() {
       if (newUser) {
         setUser("");
         toast.success("User Registered!!");
+        navigate("/login");
       } else {
         toast.error("There was a problem to register a new user");
       }
