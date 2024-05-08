@@ -38,20 +38,26 @@ export default function Profile() {
             onSubmit={handleRedirect}
           >
             <div className="flex flex-row">
-              <img
-                src={buyer}
-                alt="buyer"
-                name="buyer"
-                className="border rounded-lg bg-zinc-300 p-5  hover:border-blue-950"
-                onClick={handleBuyer}
-              />
-              <img
-                src={seller}
-                alt="seller"
-                name="seller"
-                className="border rounded-lg bg-zinc-300 p-5  hover:border-blue-950"
-                onClick={handleSeller}
-              />
+              <section>
+                <img
+                  src={buyer}
+                  alt="buyer"
+                  name="buyer"
+                  className="lg:m-3 border rounded-lg bg-zinc-300 p-5  hover:border-blue-950"
+                  onClick={handleBuyer}
+                />
+                <p>Buyer</p>
+              </section>
+              <section>
+                <img
+                  src={seller}
+                  alt="seller"
+                  name="seller"
+                  className="lg:m-3 border rounded-lg bg-zinc-300 p-5  hover:border-blue-950"
+                  onClick={handleSeller}
+                />
+                <p>Seller</p>
+              </section>
             </div>
             <div className="flex flex-row lg:m-20">
               <button type="button" className="text-blue-950">
