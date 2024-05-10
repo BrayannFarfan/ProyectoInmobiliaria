@@ -4,13 +4,14 @@ import propiedades from "../../info/info";
 import delet from "../../../images/Trash.png";
 import edit from "../../../images/Edit.png";
 import UploadPropForm from "./UploadPropForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./profileelements.css";
 
 export default function UserSeller() {
   const [loading, setLoading] = useState(true);
   const [fotos, setFotos] = useState(propiedades);
   const navigate = useNavigate();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -59,7 +60,7 @@ export default function UserSeller() {
             </section>
           </div>
           <div>
-            <h1 className="font-pop text-lg lg:m-10">To upload a property</h1>
+            <h1 className="font-pop text-lg lg:m-10">Upload a property</h1>
             <UploadPropForm />
           </div>
         </>

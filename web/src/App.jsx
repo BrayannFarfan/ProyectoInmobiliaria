@@ -28,8 +28,8 @@ function App() {
           <Route path="ourteam" element={<OurTeam />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="buyer" element={<BuyerProfile />} />
-          <Route path="seller" element={<SellerProfile />} />
+          <Route path="buyer/:id" element={<BuyerProfile />} />
+          <Route path="seller/:id" element={<SellerProfile />} />
         </Route>
       </Routes>
     </div>

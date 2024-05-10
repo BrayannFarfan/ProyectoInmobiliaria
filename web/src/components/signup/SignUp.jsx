@@ -14,8 +14,8 @@ export default function SignUp() {
         user
       );
       if (newUser) {
-        setUser("");
         toast.success("User Registered!!");
+        e.target.reset();
         navigate("/login");
       } else {
         toast.error("There was a problem to register a new user");

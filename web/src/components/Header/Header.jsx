@@ -1,19 +1,34 @@
 import log from "../../../images/Logo.png";
 import man from "../../../images/man.png";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 
 export default function Header() {
   const [logged, setLogged] = useState(false);
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const usuario = localStorage.getItem("user");
-    setUser(JSON.parse(usuario));
-    const tok = localStorage.getItem("token");
-    tok ? setLogged(true) : setLogged(false);
+    const fetchUserFromLocalStorage = () => {
+      const jsonString = localStorage.getItem("user");
+      const usuario = JSON.parse(jsonString);
+      setUser(usuario);
+      const tok = localStorage.getItem("token");
+      tok ? setLogged(true) : setLogged(false);
+    };
+    fetchUserFromLocalStorage();
   }, []);
+
+  const handleProfile = () => {
+    if (user) {
+      if (user.role_id === "A") {
+        navigate(`seller/${user.user_id}`);
+      } else {
+        navigate(`buyer/${user.user_id}`);
+      }
+    }
+  };
   return (
     <>
       <div className="flex flex-col justify-center p-2 lg:mx-2 md:mx-0 mx-0 lg:px-4 md:w-[100vw] lg:py-0  lg:flex lg:flex-row lg:justify-between ">
@@ -49,31 +64,30 @@ export default function Header() {
               Trajectory
             </p>
           </Link>
-          <Link to="/contact">
+          <Link to="/contactus">
             <p className="text-white lg:text-blue-950 font-pop ml-4 lg:ml-0 ">
               Contact
             </p>
           </Link>
           {logged ? (
-            <Link to={user.role_id === "A" ? "/seller" : "/buyer"}>
-              <div className="flex flex-row items-center font-pop justify-center border border-blue-950 rounded-xl shadow-md">
+            <>
+              <div
+                onClick={handleProfile}
+                className="flex flex-row items-center font-pop justify-center border border-blue-950 rounded-xl shadow-md cursor-pointer"
+              >
                 <section className="flex flex-col lg:items-center lg:mx-1 lg:my-2 text-gray-400 text-sm">
                   <img src={man} className="h-[20px] w-auto m-1" alt="man" />
                   <p className="mx-6">{user.name}</p>
                 </section>
               </div>
-            </Link>
+            </>
           ) : (
             <>
-              <Link to="/login">
-                <button type="button" className="loginButton">
-                  Log in
-                </button>
+              <Link to="/login" className="loginButton">
+                <button type="button">Log in</button>
               </Link>
-              <Link to="signup">
-                <button type="button" className="signinButton">
-                  Sign up
-                </button>
+              <Link to="signup" className="signinButton">
+                <button type="button">Sign up</button>
               </Link>
             </>
           )}
