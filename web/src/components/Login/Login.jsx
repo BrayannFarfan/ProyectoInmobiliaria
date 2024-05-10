@@ -11,8 +11,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const resp = await axios.post("http://localhost:3000/users/login", login);
-      const { user, token } = resp.data;
-      if (user && token) {
+      const { token, user } = resp.data;
+      if (token && user) {
         toast.success("Login successful");
         setLogin({ email: "", password: "" });
         localStorage.setItem("token", token);

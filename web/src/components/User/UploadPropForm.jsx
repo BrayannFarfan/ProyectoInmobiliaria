@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 //import plus from "../../../images/+.png";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 const PROPERTY_POST = import.meta.env.VITE_POST_PROPERTY;
 
 export default function UploadPropForm() {
@@ -17,27 +18,16 @@ export default function UploadPropForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProperty({ ...property, [name]: value });
-    console.log(property);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const prop = await axios.post(PROPERTY_POST, property);
       if (prop) {
         toast.success("Property correctly posted!!");
-        setProperty({
-          name: "",
-          location: "",
-          type: "",
-          rooms: 0,
-          bathrooms: "",
-          price: "",
-          squaremeters: "",
-          img: "",
-          description: "",
-          availability: "",
-        });
+        e.target.reset();
       } else {
         toast.error("Oh no! Something went wrong! Try again");
       }
@@ -46,6 +36,7 @@ export default function UploadPropForm() {
       console.error(error);
     }
   };
+
   return (
     <div className="flex flex-col lg:mx-20 lg:my-15 ">
       <form
@@ -111,7 +102,8 @@ export default function UploadPropForm() {
           onChange={handleChange}
           className="lg:w-2/3 lg:h-[50px] lg:my-2 border border-zinc-300 rounded-2xl"
         >
-          <option defaultValue={role}>{role}</option>
+          <option defaultValue="">{""}</option>
+          <option value={role}>{role}</option>
         </select>
         <textarea
           className="lg:w-2/3 lg:h-[150px] lg:my-2 border border-zinc-300 rounded-2xl "
