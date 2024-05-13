@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
 import LoaderSeller from "../User/LoaderSeller";
-import propiedades from "../../info/info";
 import delet from "../../../images/Trash.png";
 import edit from "../../../images/Edit.png";
 import UploadPropForm from "./UploadPropForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "axios";
 import "./profileelements.css";
 
 export default function UserSeller() {
   const [loading, setLoading] = useState(true);
-  const [fotos, setFotos] = useState(propiedades);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
+    const fetchUserInfo = async () => {
+      const info = await axios.get(`http://localhost:3000/users/${id}`);
+      return setUser(info.data.Properties);
+    };
+    fetchUserInfo();
+    console.log("aca el userinfo", user);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -40,23 +47,32 @@ export default function UserSeller() {
           </section>
           <div>
             <section className="flex flex-row lg:m-6">
-              {fotos.map((f) => {
-                return (
-                  <div key={Math.random()} className="flex flex-col">
-                    <img className="lg:p-4 lg:w-50" src={f.photos[1]} />
-                    <section className="flex flex-row justify-center">
-                      <section className="lg:p-3 flex flex-col justify-center items-center">
-                        <img src={edit} className="lg:h-5" />
-                        <p className="text-xs">Edit</p>
+              {user.length > 0 ? (
+                user.map((prop) => {
+                  return (
+                    <div key={prop.property_id} className="flex flex-col">
+                      <Link to={`property/${prop.property_id}`}>
+                        <img className="lg:h-40" src={prop.img} />
+                        <p className="mx-10">{prop.name}</p>
+                      </Link>
+                      <section className="flex flex-row justify-center">
+                        <section className="lg:p-3 flex flex-col justify-center items-center">
+                          <img src={edit} className="lg:h-5" />
+                          <p className="text-xs">Edit</p>
+                        </section>
+                        <section className="lg:p-3 flex flex-col justify-center items-center">
+                          <img src={delet} className="lg:h-5" />
+                          <p className="text-xs">Delete</p>
+                        </section>
                       </section>
-                      <section className="lg:p-3 flex flex-col justify-center items-center">
-                        <img src={delet} className="lg:h-5" />
-                        <p className="text-xs">Delete</p>
-                      </section>
-                    </section>
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })
+              ) : (
+                <section>
+                  <p>YOU DID NOT POST A PROPERTY YET</p>
+                </section>
+              )}
             </section>
           </div>
           <div>
