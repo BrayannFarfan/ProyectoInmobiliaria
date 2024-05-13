@@ -8,11 +8,12 @@ const PROPERTY_POST = import.meta.env.VITE_POST_PROPERTY;
 export default function UploadPropForm() {
   const [role, setRole] = useState();
   const [property, setProperty] = useState();
-
+  const [userid, setUserid] = useState();
   useEffect(() => {
     const user = localStorage.getItem("user");
-    const rol = JSON.parse(user);
-    setRole(rol.role_id === "A" ? "Available to sale" : "");
+    const usuario = JSON.parse(user);
+    setUserid(usuario.user_id);
+    setRole(usuario.role_id === "A" ? "Available to sale" : "");
   }, []);
 
   const handleChange = (e) => {
@@ -22,9 +23,22 @@ export default function UploadPropForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const prop = await axios.post(PROPERTY_POST, property);
+      const propertyData = {
+        name: property.name,
+        location: property.location,
+        type: property.type,
+        availability: property.availability,
+        rooms: property.rooms,
+        bathrooms: property.bathrooms,
+        price: property.price,
+        squaremeters: property.squaremeters,
+        img: property.img,
+        description: property.description,
+        user_id: userid,
+      };
+
+      const prop = await axios.post(PROPERTY_POST, propertyData);
       if (prop) {
         toast.success("Property correctly posted!!");
         e.target.reset();
@@ -36,7 +50,6 @@ export default function UploadPropForm() {
       console.error(error);
     }
   };
-
   return (
     <div className="flex flex-col lg:mx-20 lg:my-15 ">
       <form

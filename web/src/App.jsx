@@ -14,6 +14,7 @@ import SignUp from "./components/signup/SignUp";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Trayectory from "./components/Trajectory/Trayectory";
+import Property from "./components/Property/Property";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="buyer/:id" element={<BuyerProfile />} />
           <Route path="seller/:id" element={<SellerProfile />} />
+          <Route path="property/:property_id" element={<Property />} />
         </Route>
       </Routes>
     </div>
