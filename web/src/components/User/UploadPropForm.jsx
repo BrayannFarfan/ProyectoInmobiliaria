@@ -52,6 +52,9 @@ export default function UploadPropForm() {
   };
   return (
     <div className="flex flex-col lg:mx-20 lg:my-15 ">
+      <h1 className="font-pop text-lg my-10 text-blue-950">
+        Upload a property
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="font-pop flex flex-col justify-center"

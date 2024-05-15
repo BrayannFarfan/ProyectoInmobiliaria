@@ -4,14 +4,15 @@ import delet from "../../../images/Trash.png";
 import edit from "../../../images/Edit.png";
 import UploadPropForm from "./UploadPropForm";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import DeleteModal from "../Modals/DeleteModal";
+import PersonalProfile from "./PersonalProfile";
 import axios from "axios";
-import { toast } from "react-toastify";
 import "./profileelements.css";
 
 export default function UserSeller() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
-  const [modal, setModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -26,98 +27,78 @@ export default function UserSeller() {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
   };
-  const handleDelete = async () => {
-    try {
-      const del = await axios.put(
-        `http://localhost:3000/properties/delete/${property_id}`
-      );
-      if (del) toast.success(del.message);
-    } catch (error) {
-      console.error(error);
-    }
-    setModal(false);
-  };
+
   return (
     <>
       {loading ? (
         <LoaderSeller />
       ) : (
         <>
-          <section className="flex flex-row justify-between items-center font-pop px-14 py-10">
-            <h1 className="text-lg">Your properties</h1>
+          <section className="flex flex-row justify-between items-center font-pop px-14 py-10  text-blue-950">
+            <h1 className="text-3xl ">Welcome to your profile! </h1>
             <button
-              className="logoutButton bg-blue-950 rounded-md"
+              className="logoutButton bg-blue-950 rounded-md px-10 py-4"
               onClick={handleLogout}
             >
               Log out
             </button>
           </section>
-          <div>
-            <section className="flex flex-row lg:m-6">
-              {user?.length > 0 ? (
-                user.map((prop) => {
-                  return (
-                    <div key={prop.property_id} className="flex flex-col px-5">
-                      <Link to={`property/${prop.property_id}`}>
-                        <img
-                          className="lg:h-40"
-                          src={prop.img}
-                          onClick={() => navigate()}
-                        />
-                        <p className="mx-10">{prop.name}</p>
-                      </Link>
-                      <section className="flex flex-row justify-center">
-                        <section className="lg:p-3 flex flex-col justify-center items-center">
-                          <img src={edit} className="lg:h-5" />
-                          <p className="text-xs">Edit</p>
-                        </section>
-                        <section className="lg:p-3 flex flex-col justify-center items-center">
-                          <img src={delet} className="lg:h-5" />
-                          <button
-                            className="text-xs"
-                            onClick={() => setModal(true)}
-                          >
-                            Delete
-                          </button>
-                        </section>
-                        <section>
-                          {modal && (
-                            <div>
-                              <div>
-                                <p>
-                                  Do you really want to delete this property?
-                                </p>
-                                <button type="button" onClick={handleDelete}>
-                                  Yes
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => setModal(false)}
-                                >
-                                  No
-                                </button>
-                              </div>
-                            </div>
-                          )}
-                        </section>
-                      </section>
-                    </div>
-                  );
-                })
-              ) : (
-                <section>
-                  <p>YOU DID NOT POST A PROPERTY YET</p>
-                </section>
-              )}
-            </section>
+          <div className="flex flex-row">
+            <h1 className=" text-xl font-pop text-blue-950 px-14 py-5">
+              Your uploaded properties
+            </h1>
+            <h1 className=" text-xl font-pop text-blue-950 px-14 py-5">
+              Your personal information
+            </h1>
           </div>
+          <section className="flex flex-row lg:m-6">
+            {user?.length > 0 ? (
+              user.map((prop) => {
+                return (
+                  <div key={prop.property_id} className="flex flex-col px-5">
+                    <Link to={`property/${prop.property_id}`}>
+                      <img className="lg:h-40" src={prop.img} />
+                      <p className="mx-10">{prop.name}</p>
+                    </Link>
+                    <section className="flex flex-row justify-center">
+                      <section className="lg:p-3 flex flex-col justify-center items-center">
+                        <img src={edit} className="lg:h-5" />
+                        <p className="text-xs">Edit</p>
+                      </section>
+                      <section className="lg:p-3 flex flex-col justify-center items-center">
+                        <img src={delet} className="lg:h-5" />
+                        <button className="text-xs" onClick={openModal}>
+                          Delete
+                        </button>
+                      </section>
+                      <section>
+                        <DeleteModal isOpen={isOpen} onClose={closeModal} />
+                      </section>
+                    </section>
+                  </div>
+                );
+              })
+            ) : (
+              <section>
+                <p className="font-pop text-blue-950">
+                  YOU DID NOT POST A PROPERTY YET
+                </p>
+              </section>
+            )}
+          </section>
+
           <div>
-            <h1 className="font-pop text-lg lg:m-10">Upload a property</h1>
             <UploadPropForm />
           </div>
         </>
