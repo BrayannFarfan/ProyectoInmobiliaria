@@ -30,8 +30,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="buyer/:id" element={<BuyerProfile />} />
-          <Route path="seller/:id" element={<SellerProfile />} />
-          <Route path="property/:property_id" element={<Property />} />
+          <Route path="seller/:id" element={<SellerProfile />}>
+            <Route path="property/:property_id" element={<Property />} />
+          </Route>
         </Route>
       </Routes>
     </div>

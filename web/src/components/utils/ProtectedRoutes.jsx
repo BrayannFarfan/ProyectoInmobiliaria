@@ -1,7 +1,9 @@
 import { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
+
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+
   const login = (userToken) => {
     setToken(userToken);
   };
@@ -15,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
