@@ -5,11 +5,13 @@ import edit from "../../../images/Edit.png";
 import UploadPropForm from "./UploadPropForm";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./profileelements.css";
 
 export default function UserSeller() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -19,7 +21,6 @@ export default function UserSeller() {
       return setUser(info.data.Properties);
     };
     fetchUserInfo();
-    console.log("aca el userinfo", user);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -29,6 +30,17 @@ export default function UserSeller() {
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
+  };
+  const handleDelete = async () => {
+    try {
+      const del = await axios.put(
+        `http://localhost:3000/properties/delete/${property_id}`
+      );
+      if (del) toast.success(del.message);
+    } catch (error) {
+      console.error(error);
+    }
+    setModal(false);
   };
   return (
     <>
@@ -47,12 +59,16 @@ export default function UserSeller() {
           </section>
           <div>
             <section className="flex flex-row lg:m-6">
-              {user.length > 0 ? (
+              {user?.length > 0 ? (
                 user.map((prop) => {
                   return (
-                    <div key={prop.property_id} className="flex flex-col">
+                    <div key={prop.property_id} className="flex flex-col px-5">
                       <Link to={`property/${prop.property_id}`}>
-                        <img className="lg:h-40" src={prop.img} />
+                        <img
+                          className="lg:h-40"
+                          src={prop.img}
+                          onClick={() => navigate()}
+                        />
                         <p className="mx-10">{prop.name}</p>
                       </Link>
                       <section className="flex flex-row justify-center">
@@ -62,7 +78,32 @@ export default function UserSeller() {
                         </section>
                         <section className="lg:p-3 flex flex-col justify-center items-center">
                           <img src={delet} className="lg:h-5" />
-                          <p className="text-xs">Delete</p>
+                          <button
+                            className="text-xs"
+                            onClick={() => setModal(true)}
+                          >
+                            Delete
+                          </button>
+                        </section>
+                        <section>
+                          {modal && (
+                            <div>
+                              <div>
+                                <p>
+                                  Do you really want to delete this property?
+                                </p>
+                                <button type="button" onClick={handleDelete}>
+                                  Yes
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setModal(false)}
+                                >
+                                  No
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </section>
                       </section>
                     </div>
