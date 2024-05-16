@@ -2,7 +2,7 @@
 
 export default function Property() {
   // const [propInfo, setPropinfo] = useState();
-  // const { property_id } = useParams();
+  // const { propertyId } = useParams();
 
   return (
     <div>
