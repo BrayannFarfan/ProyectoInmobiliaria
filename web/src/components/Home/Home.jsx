@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import home from "../../../images/house.png";
 import Carrousel from "../Carrousel/Carrousel";
-import Card from "../Card/Card";
+import HouseCard from "../HouseCard/HouseCard";
 import About from "../About/About";
 import OurTeam from "../OurTeam/OurTeam";
 import ContactUs from "../ContactUs/ContactUs";
@@ -40,7 +40,7 @@ const Home = () => {
         </h1>
       </div>
       <div className="flex lg:justify-center ml-14 lg:items-center p-5 lg:p-9 lg:ml-4 ">
-        <Card />
+        <HouseCard />
       </div>
       <About />
       <OurTeam />
