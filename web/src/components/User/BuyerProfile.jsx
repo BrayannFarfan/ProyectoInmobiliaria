@@ -1,27 +1,17 @@
 import { useState, useEffect } from "react";
 import LoaderBuyer from "../User/LoaderBuyer";
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+
 const UserBuyer = () => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState();
+
   const navigate = useNavigate();
-  const { id } = useParams();
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const resp = await axios.get("http://localhost:3000/users/" + `${id}`);
-        setUser(resp);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
-
-    clearTimeout(timer);
-    fetchUser();
+    return () => clearTimeout(timer);
   }, []);
 
   const handleLogout = () => {
@@ -34,9 +24,15 @@ const UserBuyer = () => {
         <LoaderBuyer />
       ) : (
         <section className="flex flex-row justify-between items-center font-pop px-14 py-10">
-          <h1 className="text-lg">Check our properties</h1>
+          <div className="flex flex-row">
+            <h1 className="text-xl mx-6 mt-4 mb-10">Check your Profile</h1>
+            <h1 className="text-xl mx-6 mt-4 mb-10">Check your Wishlist</h1>
+            <Link to="/">
+              <h1 className="text-xl mx-6 mt-4 mb-10">Check our properties</h1>
+            </Link>
+          </div>
           <button
-            className="logoutButton bg-blue-950 rounded-md"
+            className="border border-blue-950 text-white px-8 py-3 mb-9 bg-blue-950 rounded-md"
             onClick={handleLogout}
           >
             Log out
